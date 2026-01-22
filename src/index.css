@@ -14,6 +14,10 @@ body {
   min-height: 100vh;
 }
 
+main {
+  padding-bottom: 4rem;
+}
+
 header {
   padding-top: 5rem;
   text-align: center;
@@ -41,6 +45,7 @@ form {
   width: 90%;
   max-width: 40rem;
   margin: 3rem auto;
+  margin-bottom: 0;
   padding: 2rem;
   background: linear-gradient(180deg, #253c3c, #1d4949);
   border-radius: 8px;
