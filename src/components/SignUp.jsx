@@ -7,6 +7,8 @@ export default function Signup() {
     const acquisitionData = fd.getAll("acquisition");
     data.acquisition = acquisitionData;
     console.log(data);
+
+    // event.target.reset();
   }
 
   return (
@@ -16,7 +18,13 @@ export default function Signup() {
 
       <div className="control">
         <label htmlFor="email">Email</label>
-        <input id="email" type="email" name="email" autoComplete="user-name" />
+        <input
+          id="email"
+          type="email"
+          name="email"
+          autoComplete="user-name"
+          required
+        />
       </div>
 
       <div className="control-row">
@@ -27,6 +35,7 @@ export default function Signup() {
             type="password"
             name="password"
             autoComplete="new-password"
+            required
           />
         </div>
 
@@ -37,6 +46,7 @@ export default function Signup() {
             type="password"
             name="confirm-password"
             autoComplete="new-password"
+            required
           />
         </div>
       </div>
@@ -46,18 +56,21 @@ export default function Signup() {
       <div className="control-row">
         <div className="control">
           <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" name="first-name" />
+          <input type="text" id="first-name" name="first-name" required />
         </div>
 
         <div className="control">
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" name="last-name" />
+          <input type="text" id="last-name" name="last-name" required />
         </div>
       </div>
 
       <div className="control">
         <label htmlFor="phone">What best describes your role?</label>
-        <select id="role" name="role">
+        <select id="role" name="role" required defaultValue="">
+          <option value disabled>
+            Please select an option
+          </option>
           <option value="student">Student</option>
           <option value="teacher">Teacher</option>
           <option value="employee">Employee</option>
@@ -96,18 +109,21 @@ export default function Signup() {
 
       <div className="control">
         <label htmlFor="terms-and-conditions">
-          <input type="checkbox" id="terms-and-conditions" name="terms" />I
-          agree to the terms and conditions
+          <input
+            type="checkbox"
+            id="terms-and-conditions"
+            name="terms"
+            required
+          />
+          I agree to the terms and conditions
         </label>
       </div>
 
       <p className="form-actions">
-        <button type="reset" className="button button-flat">
+        <button type="button" className="button button-flat">
           Reset
         </button>
-        <button type="submit" className="button">
-          Sign up
-        </button>
+        <button className="button">Sign up</button>
       </p>
     </form>
   );

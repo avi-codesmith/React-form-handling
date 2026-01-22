@@ -6,16 +6,32 @@ export default function Login() {
     password: "",
   });
 
+  const [isTyping, setIsTyping] = useState({
+    email: false,
+    password: false,
+  });
+
+  const emailIsInvalid = isTyping.email && !enteredData.email.includes("@");
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(enteredData.email);
-    console.log(enteredData.password);
   }
 
-  function handleEnteredData(identifier, value) {
+  function handleChange(identifier, value) {
     setEnteredData((prev) => ({
       ...prev,
       [identifier]: value,
+    }));
+    setIsTyping((prev) => ({
+      ...prev,
+      [identifier]: false,
+    }));
+  }
+
+  function handleBlur(identifier) {
+    setIsTyping((prev) => ({
+      ...prev,
+      [identifier]: true,
     }));
   }
 
@@ -28,11 +44,15 @@ export default function Login() {
           <label htmlFor="email">Email</label>
           <input
             id="email"
-            type="email"
+            type="text"
             name="email"
-            onChange={(event) => handleEnteredData("email", event.target.value)}
+            onBlur={() => handleBlur("email")}
+            onChange={(event) => handleChange("email", event.target.value)}
             value={enteredData.email}
           />
+          <div className="control-error">
+            {emailIsInvalid && <p>Please enter avalid e-mail</p>}
+          </div>
         </div>
 
         <div className="control no-margin">
@@ -41,9 +61,7 @@ export default function Login() {
             id="password"
             type="password"
             name="password"
-            onChange={(event) =>
-              handleEnteredData("password", event.target.value)
-            }
+            onChange={(event) => handleChange("password", event.target.value)}
             value={enteredData.password}
           />
         </div>
@@ -51,7 +69,9 @@ export default function Login() {
 
       <p className="form-actions">
         <button className="button button-flat">Reset</button>
-        <button className="button">Login</button>
+        <button className="button" onClick={() => handleBlur("email")}>
+          Login
+        </button>
       </p>
     </form>
   );
