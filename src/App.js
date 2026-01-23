@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Login from "./components/Login";
-// import Signup from "./components/SignUp";
+import Signup from "./components/SignUp";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Header />
       <main>
         <Login />
-        {/* <Signup /> */}
+        <Signup />
       </main>
     </>
   );

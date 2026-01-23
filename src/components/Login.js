@@ -17,41 +17,15 @@ export default function Login() {
     hasError: passwordIsInvalid,
   } = useInput("", (value) => isNotEmpty(value) && hasMinLength(value, 6));
 
-  // const [enteredData, setEnteredData] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const [isTyping, setIsTyping] = useState({
-  //   email: false,
-  //   password: false,
-  // });
-
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (emailIsInvalid || passwordIsInvalid) {
+      return;
+    }
+
+    console.log(emailValue, passwordValue);
   }
-
-  // function handleChange(identifier, value) {
-  //   setEnteredData((prev) => ({
-  //     ...prev,
-  //     [identifier]: value,
-  //   }));
-  //   setIsTyping((prev) => ({
-  //     ...prev,
-  //     [identifier]: false,
-  //   }));
-  // }
-
-  // function handleBlur(identifier) {
-  //   setIsTyping((prev) => ({
-  //     ...prev,
-  //     [identifier]: true,
-  //   }));
-  // }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  // }
 
   return (
     <form onSubmit={handleSubmit}>
