@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export default function Signup() {
+  const [passwordNotEqual, setPasswordNotEqual] = useState(false);
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -6,8 +10,13 @@ export default function Signup() {
     const data = Object.fromEntries(fd.entries());
     const acquisitionData = fd.getAll("acquisition");
     data.acquisition = acquisitionData;
-    console.log(data);
 
+    if (data.password !== data["confirm-password"]) {
+      setPasswordNotEqual(true);
+      return;
+    }
+
+    console.log(data);
     // event.target.reset();
   }
 
@@ -48,6 +57,9 @@ export default function Signup() {
             autoComplete="new-password"
             required
           />
+          <div className="control-error">
+            {passwordNotEqual && <p>Password is not macthing to initial</p>}
+          </div>
         </div>
       </div>
 
